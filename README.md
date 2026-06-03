@@ -1,0 +1,1 @@
+# Estudos AWS Cloud Practitioner Essentials
