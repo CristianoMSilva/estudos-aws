@@ -48,7 +48,7 @@ Determina exatamente as fronteiras de segurança entre o provedor e o usuário:
 
 * *Nota:* A linha de divisão pode variar dependendo do tipo de serviço utilizado (IaaS, PaaS ou SaaS).
 
-## Módulo 2: Computação, Escalonamento e Desacoplamento
+## Módulo 2: Computação na Nuvem
 
 ### Introdução ao Amazon EC2 (Elastic Compute Cloud)
 
