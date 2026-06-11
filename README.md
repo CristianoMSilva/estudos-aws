@@ -163,7 +163,7 @@ O ELB distribui automaticamente o tráfego de entrada de aplicações entre vár
 
 ---
 
-### Arquiteturas de Integração e Desacoplamento (Mensageria)
+### Arquiteturas de Integração e Desacoplamento
 
 A forma como os componentes de uma aplicação se comunicam dita a resiliência do sistema:
 
@@ -178,3 +178,61 @@ A forma como os componentes de uma aplicação se comunicam dita a resiliência 
 * **Amazon SQS (Simple Queue Service):** Serviço de enfileiramento de mensagens gerenciado. Permite enviar, armazenar e receber mensagens entre componentes de software em qualquer volume, sem perder mensagens ou depender da disponibilidade imediata de outros serviços.
 
 * **Amazon SNS (Simple Notification Service):** Opera com base no modelo de **Publicação/Assinatura (Pub/Sub)**. Permite que publicadores enviem mensagens e notificações para múltiplos assinantes ou endpoints (como e-mail, SMS, funções Lambda, ou filas SQS) por meio de canais centralizados (tópicos).
+
+## Módulo 3: Compreensão dos Serviços Computacionais (AWS)
+
+### Classificação dos Serviços de Nuvem
+
+Antes de entender cada serviço, é crucial entender que na AWS os recursos computacionais são classificados de acordo com o nível de gerenciamento e controle da infraestrutura:
+
+* **Serviços Não Gerenciados (Ex: Amazon EC2):** O cliente é o total responsável por configurar a infraestrutura lógica, aplicar patches de segurança, gerenciar atualizações do Sistema Operacional e cuidar do escalonamento manual.
+
+* **Serviços Gerenciados:** A AWS reduz consideravelmente a carga de administração física e de infraestrutura.
+
+* **Serviços Totalmente Gerenciados / Serverless (Ex: AWS Lambda):** O cliente não enxerga ou gerencia servidores. O foco passa a ser 100% voltado para a aplicação e o código, deixando o provisionamento, escalonamento e resiliência por conta da AWS.
+
+---
+
+### AWS Lambda (Computação Serverless)
+
+O **AWS Lambda** é um serviço de computação orientado a eventos que executa códigos sem que você precise provisionar ou gerenciar servidores físicos ou virtuais.
+
+* **Ciclo de Funcionamento:**
+  
+  1. O desenvolvedor faz o upload do código (Função Lambda).
+  
+  2. Define-se um gatilho (*trigger*) baseado em eventos (ex: um arquivo sendo enviado ao Amazon S3 ou uma alteração em banco de dados).
+  
+  3. O código roda exclusivamente em resposta ao evento acionado.
+
+* **Runtime:** Define as configurações do ambiente de execução nativo fornecido para o código rodar com estabilidade.
+
+* **Modelo de Cobrança:** Paga-se estritamente pelo tempo computacional consumido enquanto o código estiver rodando (medido em milissegundos). Se a função não for chamada, o custo é zero.
+
+---
+
+### Contêineres e Orquestração na AWS
+
+Diferente das Máquinas Virtuais tradicionais (VMs), que necessitam de um hipervisor para rodar Sistemas Operacionais completos e isolados, os **Contêineres** compartilham o mesmo Kernel do S.O. do host hospedeiro. 
+* *Vantagem:* Eles empacotam a aplicação com todas as dependências necessárias, sendo muito mais leves, portáveis e rápidos para iniciar do que instâncias EC2 tradicionais.
+
+Para gerenciar o ciclo de vida de contêineres em larga escala, a AWS oferece os seguintes serviços:
+
+| Serviço AWS | Função Principal | Objetivo de Exame |
+| :--- | :--- | :--- |
+| **Amazon ECS (Elastic Container Service)** | Orquestrador de Contêineres próprio da AWS | Rodar e escalar contêineres Docker de alta performance de forma integrada ao ecossistema AWS. |
+| **Amazon EKS (Elastic Kubernetes Service)** | Orquestrador baseado em Kubernetes | Gerenciar e rodar contêineres na AWS utilizando a ferramenta open-source Kubernetes padrão de mercado. |
+| **Amazon ECR (Elastic Container Registry)** | Registro de Imagens de Contêiner | Repositório totalmente gerenciado e seguro para armazenar e puxar imagens de contêineres. |
+| **AWS Fargate** | Computação Serverless para Contêineres | Mecanismo que executa contêineres (tanto no ECS quanto no EKS) sem que você precise gerenciar ou provisionar instâncias EC2 por baixo. |
+
+---
+
+### Outros Serviços Computacionais Essenciais
+
+* **AWS Elastic Beanstalk:** O serviço perfeito para desenvolvedores. Você faz o upload do seu código (Java, .NET, PHP, Node.js, Python, etc.) e o Beanstalk cuida automaticamente do provisionamento de infraestrutura, balanceamento de carga (ELB), Auto Scaling e monitoramento de saúde da aplicação.
+
+* **AWS Batch:** Planejado para planejar e executar cargas de trabalho computacionais em lote (*batch computing*) de qualquer escala com eficiência.
+
+* **Amazon Lightsail:** Oferece servidores virtuais privados (VPS), armazenamento e bancos de dados em pacotes simplificados de baixo custo mensal fixo. Ideal para sites simples ou ambientes de teste rápidos.
+
+* **AWS Outposts:** Solução de nuvem **híbrida**. Permite que o cliente execute serviços nativos da AWS dentro do seu próprio data center local (on-premises).
