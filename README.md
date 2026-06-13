@@ -236,3 +236,51 @@ Para gerenciar o ciclo de vida de contêineres em larga escala, a AWS oferece os
 * **Amazon Lightsail:** Oferece servidores virtuais privados (VPS), armazenamento e bancos de dados em pacotes simplificados de baixo custo mensal fixo. Ideal para sites simples ou ambientes de teste rápidos.
 
 * **AWS Outposts:** Solução de nuvem **híbrida**. Permite que o cliente execute serviços nativos da AWS dentro do seu próprio data center local (on-premises).
+
+---
+
+## AWS Módulo 4: Alcance Global e Automação
+
+### 1. Infraestrutura Global e Rede de Borda
+
+A AWS distribui seus recursos globalmente para garantir baixa latência e alta resiliência para os usuários finais.
+
+* **Locais de Borda (Edge Locations):** São pontos de presença que armazenam itens em **cache**, permitindo que os usuários passem a acessar o conteúdo de que precisam com a menor latência possível.
+
+* **Rede Global de Borda (Amazon CloudFront):** Funciona como uma CDN (Content Delivery Network / Rede de Entrega de Conteúdo), oferecendo serviços e dados (cache) mais próximos dos clientes.
+
+---
+
+### 2. Considerações Cruciais ao Escolher Regiões AWS
+
+A escolha de uma Região geográfica para implantar sua infraestrutura deve ser baseada em 4 fatores fundamentais:
+
+1. **Conformidade:** Atendimento a requisitos regulatórios e leis de proteção de dados específicas de cada Região.
+
+2. **Proximidade:** Escolha de Regiões próximas dos clientes para **minimizar o tempo** (latência) de resposta.
+
+3. **Disponibilidade de Recursos:** Nem todas as Regiões têm exatamente os mesmos serviços disponíveis; eles variam para atender a requisitos regulamentares governamentais.
+
+4. **Preço:** A localização geográfica e as regulamentações locais afetam diretamente os custos dos serviços.
+
+---
+
+### 3. Pilares de uma Arquitetura Altamente Disponível
+
+Para construir sistemas robustos na nuvem, deve-se focar em três características essenciais:
+
+* **Alta Disponibilidade:** Garantir que o sistema opere continuamente **sem falhar**.
+
+* **Agilidade:** Capacidade de adaptação rápida às mudanças e demandas do mercado.
+
+* **Elasticidade:** Habilidade de aumentar ou diminuir a infraestrutura conforme a flutuação da demanda.
+
+---
+
+### 4. Automação e Infraestrutura como Código (IaC)
+
+Gerenciar servidores e redes manualmente não escala. A nuvem permite tratar infraestrutura como se fosse software.
+
+* **AWS CloudFormation:** É um serviço que ajuda a modelar e configurar os recursos na AWS de forma automatizada. Ele permite definir toda a infraestrutura como código, garantindo uma configuração consistente para expansão.
+
+* **IaC (Infrastructure as Code):** Funciona como um "banco de comandos" estruturado para automação e configuração de ambientes.
