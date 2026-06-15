@@ -284,3 +284,85 @@ Gerenciar servidores e redes manualmente não escala. A nuvem permite tratar inf
 * **AWS CloudFormation:** É um serviço que ajuda a modelar e configurar os recursos na AWS de forma automatizada. Ele permite definir toda a infraestrutura como código, garantindo uma configuração consistente para expansão.
 
 * **IaC (Infrastructure as Code):** Funciona como um "banco de comandos" estruturado para automação e configuração de ambientes.
+
+## AWS Módulo 5: Redes e Segurança de Tráfego
+
+### 1. Amazon VPC (Virtual Private Cloud) e Componentes de Conectividade
+
+A VPC funciona como uma rede virtual definida por você para executar seus recursos AWS de forma isolada e segura.
+
+* **Sub-rede (Subnet):** Organiza os recursos dentro da VPC através de intervalos de endereços IP. Podem ser configuradas como:
+  
+  * **Públicas:** Acessíveis diretamente pela internet.
+  
+  * **Privadas:** Isoladas do acesso direto externo.
+
+* **Benefícios Core:** Aumenta a segurança, economiza tempo e controla rigorosamente o acesso.
+
+* **Gateways de Acesso:**
+  
+  * **Internet Gateway:** Fornece o ponto de acesso público para a internet.
+  
+  * **Gateway Privado (Virtual Private Gateway):** Cria um "funil" criptografado (**VPN**) para proteger o tráfego de dados corporativos.
+  
+  * **NAT Gateway (Conversão de Endereços de Rede):** Permite que instâncias em uma sub-rede privada se conectem a serviços fora da VPC (como atualizações de software), mas impede que a internet inicie conexões com elas.
+
+---
+
+### 2. Modelos de Conectividade Híbrida e Integração
+
+A AWS oferece diferentes abordagens para integrar sua infraestrutura local (*on-premises*) ou conectar serviços de forma isolada:
+
+| Serviço | Função Principal | Diferencial Técnico |
+| :--- | :--- | :--- |
+| **AWS Client VPN** | Conecta profissionais remotos e redes locais à nuvem. | Solução elástica e totalmente gerenciada. |
+| **AWS Site-to-Site VPN** | Conecta filiais ou data centers locais à VPC. | Utiliza túneis criptografados via internet. |
+| **AWS PrivateLink** | Conecta a VPC a serviços e recursos de forma estritamente privada. | O tráfego não expõe os dados à internet pública; age como se o serviço estivesse dentro da sua VPC. |
+| **AWS Direct Connect** | Estabelece uma conexão física e privada dedicada entre a empresa e a AWS. | Ideal para **aplicações em tempo real** e **transferência de grandes volumes de dados** (evita a internet pública). |
+| **AWS Transit Gateway** | Atua como um *hub* central de roteamento. | Conecta de forma simplificada múltiplas VPCs e redes *on-premises*. |
+
+---
+
+### 3. Segurança de Rede: ACLs vs. Grupos de Segurança (Security Groups)
+
+Esta distinção é cobrada em praticamente todas as versões do exame. Ambos atuam como firewalls virtuais, mas em níveis e lógicas diferentes:
+
+#### Network ACLs (NACLs)
+
+* **Nível de Atuação:** Atua no nível da **sub-rede**.
+
+* **Comportamento Padrão:** Libera tudo por padrão (entra e sai). Se personalizada, nada entra ou sai sem autorização explícita.
+
+* **Mecânica (Stateless):** É **Sem Estado**. Ela não lembra das requisições; verifica o tráfego rigidamente tanto na entrada quanto na saída de forma independente.
+
+#### Grupos de Segurança (Security Groups)
+
+* **Nível de Atuação:** Atua no nível da **instância** (ex: EC2).
+
+* **Comportamento Padrão:** Nega todo o tráfego de entrada e permite todo o tráfego de saída. Você define regras personalizadas para determinar quem pode entrar.
+
+* **Mecânica (Stateful):** É **Com Estado**. Ele lembra as decisões anteriores tomadas para cada pacote recebido; se uma conexão de entrada for permitida, o tráfego de retorno correspondente sai automaticamente, ignorando regras de saída.
+
+---
+
+### 4. Roteamento Global, Performance e APIs
+
+* **Amazon API Gateway:** Ferramenta desenvolvida para monitorar e proteger APIs em qualquer escala de acesso.
+
+* **Amazon Route 53:** Serviço de DNS altamente confiável e econômico, projetado para rotear usuários finais para aplicações web globais.
+
+* **Amazon CloudFront:** Serviço de rede de entrega de conteúdo (CDN) que otimiza a entrega armazenando cópias em cache nos Locais de Borda.
+
+* **AWS Global Accelerator:** Otimiza a performance global usando roteamento inteligente de tráfego sobre a infraestrutura de rede da AWS, contando com **failover rápido** caso ocorra qualquer instabilidade.
+
+---
+
+### 🧠 Gatilhos de Prova para Fixação Rápida
+
+* Falou em **"Firewall Stateless que atua na sub-rede"** $\rightarrow$ **Network ACL**.
+
+* Falou em **"Firewall Stateful que protege a instância"** $\rightarrow$ **Security Group**.
+
+* Pediu conexão dedicada de **alta velocidade, sem passar pela internet**, para **tempo real ou massa de dados** $\rightarrow$ **AWS Direct Connect**.
+
+* Centralizar conexões de **centenas de VPCs e redes locais** em um único ponto $\rightarrow$ **AWS Transit Gateway**.
