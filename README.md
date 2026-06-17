@@ -366,3 +366,77 @@ Esta distinção é cobrada em praticamente todas as versões do exame. Ambos at
 * Pediu conexão dedicada de **alta velocidade, sem passar pela internet**, para **tempo real ou massa de dados** $\rightarrow$ **AWS Direct Connect**.
 
 * Centralizar conexões de **centenas de VPCs e redes locais** em um único ponto $\rightarrow$ **AWS Transit Gateway**.
+
+## AWS Módulo 6: Introdução ao Armazenamento
+
+### 1. Tipos de Armazenamento de Dados
+
+A AWS classifica seus serviços de armazenamento com base na estrutura de acesso e na persistência dos dados:
+
+* **Armazenamento em Bloco:** Os dados são divididos em blocos puros. Podem ser criptografados, copiados por meio de *snapshots* e modificados dinamicamente durante o uso.
+  
+  * **Armazenamento de Instância EC2 (Instance Store):** Armazenamento temporário (efêmero) e **não gerenciado**, ideal para dados temporários, pois está fisicamente conectado ao host da instância.
+  
+  * **Amazon EBS (Elastic Block Store):** Armazenamento **gerenciado e persistente** em blocos. Funciona como discos rígidos externos, oferecendo desempenho consistente e baixa latência para workloads como bancos de dados (BD) e sistemas de arquivos na mesma AZ.
+
+* **Armazenamento de Objeto (Amazon S3):** Altamente dimensionável e totalmente gerenciado. Trata os dados como objetos isolados dentro de contêineres conhecidos como **Buckets**. Permite armazenar e recuperar qualquer quantidade de dados de qualquer lugar.
+
+* **Armazenamento de Arquivos:** Projetado para arquivos compartilhados que necessitam de **acesso simultâneo** por múltiplos clientes/instâncias.
+
+---
+
+### 2. Classes de Armazenamento do Amazon S3 e Ciclo de Vida
+
+Para otimizar custos, o S3 oferece diferentes classes baseadas na frequência de acesso. O **Ciclo de Vida do S3** permite automatizar ações de transição entre essas classes ou a expiração (deleção) dos objetos.
+
+| Classe de Armazenamento | Cenário de Uso Principal | Características Técnicas |
+| :--- | :--- | :--- |
+| **S3 Standard** | Uso geral (Padrão/Default). | Acesso frequente e imediato. |
+| **S3 Intelligent-Tiering** | Dados com padrões de acesso desconhecidos. | Move os dados automaticamente entre 3 camadas (Frequente, Pouco Frequente e Instantâneo) para adequar os gastos. |
+| **S3 Standard-IA** | Acesso menos frequente. | Exige acesso rápido quando necessário, mas com menor custo de armazenamento. |
+| **S3 One Zone-IA** | Dados replicáveis de baixa frequência. | Armazena em uma **única AZ** para reduzir custos. |
+| **S3 Express One Zone** | Workloads de altíssima performance. | Armazenado em uma única AZ com a maior velocidade de acesso a dados. |
+| **S3 Glacier Instant Retrieval** | Arquivos de longa retenção raramente acessados. | Mesma velocidade do Standard-IA, mas com menor custo de armazenamento. |
+| **S3 Glacier Flexible Retrieval** | Backups tradicionais de baixo custo. | Tempo de recuperação flexível. |
+| **S3 Glacier Deep Archive** | Arquivamento de conformidade/regulamentação. | A classe mais barata de todas; para dados que você quase nunca usa, mas precisa manter. |
+| **S3 Outposts** | Ambientes locais (*on-premises*). | Armazenamento de objetos nativo do S3 executado localmente. |
+
+> 🔒 **Segurança no S3:** O controle de acesso é gerenciado pelas **Bucket Policies** (que especificam quais ações são permitidas ou negadas no Bucket e em seus objetos). A segurança também se apoia em **Identidade** (quem está autorizado) e **Criptografia** (em repouso, dentro do bucket, ou em trânsito, na comunicação fora do S3).
+
+---
+
+### 3. Armazenamento de Arquivos Avançado: EFS vs. FSx
+
+* **Amazon EFS (Elastic File System):** Sistema de arquivos NFS totalmente gerenciado, projetado para suportar uma grande variedade de workloads. Pode ser acessado por **várias instâncias EC2 simultaneamente** em diferentes AZs e serviços de nuvem/on-premises. Você paga apenas pelo armazenamento utilizado.
+
+* **Amazon FSx:** Reduz a complexidade de gerenciamento fornecendo os atributos e capacidades de sistemas de arquivos tradicionais e populares, eliminando planejamentos complexos. Suporta:
+  
+  * Windows File Server
+  
+  * NetApp ONTAP
+  
+  * OpenZFS
+  
+  * Lustre
+
+---
+
+### 4. Armazenamento Híbrido e Resiliência
+
+* **AWS Storage Gateway:** Serviço que possibilita a **integração perfeita de ambientes locais (on-premises)** com o armazenamento em nuvem da AWS. É dividido em:
+  
+  * **Amazon S3 File Gateway:** Conecta diretamente o ambiente local ao Amazon S3.
+  
+  * **Volume Gateway:** Cria volumes de armazenamento virtual locais enquanto mantém o acesso e backup na nuvem.
+  
+  * **Tape Gateway:** Substitui fitas físicas por **fitas virtuais**, excelente para manter sistemas de backup em fita existentes.
+
+* **AWS Elastic Disaster Recovery:** Simplifica e automatiza a réplica de workloads críticos (servidores físicos, virtuais ou em nuvem) para a AWS com o mínimo de tempo de inatividade, proporcionando:
+  
+  * Resiliência empresarial.
+  
+  * Recuperação de desastres eficiente.
+  
+  * Otimização de custos.
+
+  
