@@ -439,4 +439,74 @@ Para otimizar custos, o S3 oferece diferentes classes baseadas na frequência de
   
   * Otimização de custos.
 
+
+## AWS Módulo 7: Banco de Dados
+
+### 1. Visão Geral e Bancos de Dados Relacionais (SQL)
+
+Os bancos de dados relacionais organizam os dados em tabelas com linhas e colunas, utilizando a linguagem SQL (Structured Query Language). A AWS oferece suporte a mecanismos de BD populares para facilitar a migração e o gerenciamento.
+
+* **Amazon RDS (Relational Database Service):** Serviço de banco de dados relacional totalmente gerenciado. Ele lida com tarefas rotineiras e complexas, otimizando custos, implantação, alta disponibilidade (Multi-AZ) e segurança.
+  
+  * **Facilidades:** Automatiza patches de segurança, backups e monitoramento de desempenho.
+  
+  * **Mecanismos suportados:** MySQL, PostgreSQL, MariaDB, Oracle e Microsoft SQL Server.
+
+* **Amazon Aurora:** Banco de dados relacional da própria AWS, totalmente compatível com MySQL e PostgreSQL. É projetado para oferecer o desempenho e a disponibilidade de bancos comerciais de ponta com o custo de softwares de código aberto.
+  
+  * **Características Técnicas:** Oferece alto desempenho, tolerância a falhas e armazenamento auto-executável (redimensiona automaticamente conforme o uso). É altamente resiliente e consegue gerenciar o backup de forma automatizada e contínua.
+
+---
+
+### 2. Gerenciamento de Infraestrutura: Gerenciado (RDS) vs. Não Gerenciado (EC2)
+
+Uma decisão arquitetural crítica na AWS é escolher o nível de controle sobre o banco de dados:
+
+* **Solução Não Gerenciada (Banco no Amazon EC2):** Consiste em instalar o motor do banco de dados diretamente em uma instância virtual do EC2.
+  
+  * **Cenário de Uso Ideal:** Quando a empresa necessita de **controle total sobre o sistema operacional (acesso root)**, precisa aplicar configurações/plugins customizados e profundos, ou necessita rodar versões de software legadas/específicas que não são suportadas pelos serviços gerenciados da AWS.
+  
+  * **Responsabilidade:** Toda a manutenção (backups, patches, alta disponibilidade) fica a cargo do usuário.
+
+* **Solução Gerenciada (Amazon RDS / Aurora):** A AWS assume a responsabilidade pela infraestrutura subjacente, atualizações do SO e rotinas de backup.
+  
+  * **Cenário de Uso Ideal:** Workloads padrão onde o foco principal é o desenvolvimento do negócio e a redução do overhead operacional.
+
+---
+
+### 3. Bancos de Dados Não Relacionais (NoSQL) e Especializados
+
+Bancos de dados NoSQL são projetados para modelos de dados específicos e possuem esquemas flexíveis para construir aplicações modernas de alta performance.
+
+* **Amazon DynamoDB:** Serviço de banco de dados NoSQL (Chave-Valor e Documental) totalmente gerenciado e *serverless*.
+  
+  * **Características Técnicas:** Oferece latência de milissegundo de dígito único em qualquer escala, replicação global automatizada e alta performance constante, tornando-o ideal para aplicações que exigem escalabilidade extrema.
+
+* **Amazon DocumentDB:** Serviço de banco de dados documental rápido, escalável e totalmente gerenciado, projetado para lidar com dados semiestruturados.
+  
+  * **Características Técnicas:** Oferece compatibilidade com cargas de trabalho do **MongoDB**, permitindo iterar de forma rápida sem a necessidade de gerenciar esquemas predefinidos.
+
+* **Amazon Neptune:** Banco de dados de **grafos** totalmente gerenciado e otimizado para armazenar e navegar por conjuntos de dados altamente conectados.
+  
+  * **Cenário de Uso Principal:** Redes sociais, motores de recomendação, deteção de fraudes e gráficos de conhecimento.
+
+---
+
+### 4. Serviços de Cache, Migração e Governaça de Dados
+
+* **Serviços de Armazenamento em Cache (In-Memory Data Store):**
+  
+  * **Cache:** Reduz drasticamente a carga nos bancos de dados relacionais/não relacionais tradicionais ao armazenar dados frequentemente acessados na memória RAM.
+  
+  * **Amazon ElastiCache:** Serviço gerenciado compatível com Redis e Memcached. Deteta e substitui nós com falha de forma automática, garantindo alta velocidade de resposta para a aplicação.
+
+* **AWS Database Migration Service (AWS DMS):** Serviço focado em resolver o problema de movimentação de dados para a nuvem de forma rápida e segura.
+  
+  * **Cenário de Uso Principal:** Permite migrar bancos de dados comerciais e de código aberto para a AWS com o **mínimo de tempo de inatividade (downtime)**, mantendo o banco de origem totalmente operacional durante o processo.
+  
+  * **Versatilidade:** Suporta migrações homogêneas (ex: Oracle para Oracle) e heterogêneas (ex: Oracle para Amazon Aurora ou DynamoDB), cobrindo estruturas relacionais, não relacionais e documentais.
+
+* **AWS Backup:** Serviço centralizado e gerenciado para automatizar e consolidar a proteção de dados.
+  
+  * **Características Técnicas:** Torna o gerenciamento de cópias de segurança menos complexo ao oferecer suporte a vários tipos de armazenamento e serviços da AWS, permitindo configurar estratégias de backup globais e em total conformidade regulatória.
   
