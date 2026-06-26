@@ -1,8 +1,13 @@
-# Estudos AWS Cloud Practitioner Essentials
+<br>
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" width="300"/>
+</p>
+<br>
 
-Repositório dedicado a documentação de conceitos, anotações de módulos e laboratórios práticos para a certificação AWS Cloud Practitioner.
+# ☁️ AWS Cloud Practitioner Essentials - Anotações e Estudos
 
----
+### Repositório dedicado a documentação de conceitos, anotações de módulos para a certificação AWS Cloud Practitioner.
+
 
 ## Módulo 1: Conceitos de Nuvem e Infraestrutura Global
 
