@@ -4,7 +4,7 @@
 </p>
 <br>
 
-# ☁️ AWS Cloud Practitioner Essentials - Anotações e Estudos
+# AWS Cloud Practitioner Essentials
 
 ### Repositório dedicado a documentação de conceitos, anotações de módulos para a certificação AWS Cloud Practitioner.
 
