@@ -514,4 +514,93 @@ Bancos de dados NoSQL são projetados para modelos de dados específicos e possu
 * **AWS Backup:** Serviço centralizado e gerenciado para automatizar e consolidar a proteção de dados.
   
   * **Características Técnicas:** Torna o gerenciamento de cópias de segurança menos complexo ao oferecer suporte a vários tipos de armazenamento e serviços da AWS, permitindo configurar estratégias de backup globais e em total conformidade regulatória.
-  
+
+# Módulo 8: IA/ML e Data Analytics
+
+## 🧠 Conceitos Fundamentais
+
+* **Inteligência Artificial (IA):** Foca no desenvolvimento de sistemas computacionais inteligentes que simulam a capacidade e o comportamento humanos.
+* **Machine Learning (ML):** Um tipo de IA focado em realizar tarefas sem instruções explícitas. Com ele, é possível fazer previsões e tomar decisões com base em padrões extraídos de dados.
+* **Aprendizado Profundo (DL - Deep Learning):** *[Continuação]* É um subconjunto do ML, onde os modelos são treinados usando redes neurais artificiais. Cada camada resume e envia informações para a próxima.
+* **LLM (Large Language Model):** É um tipo de Foundation Model (FM) treinado com grandes volumes de dados textuais, focado no processamento e geração de linguagem humana.
+
+---
+
+## 🥞 A Pilha de IA/ML da AWS
+
+A AWS organiza sua abordagem de IA/ML em três níveis de abstração (Pilha), atendendo desde desenvolvedores que buscam soluções prontas até cientistas de dados que precisam de controle total:
+
+| Nível da Pilha | Abordagem | Descrição / Principais Serviços |
+| :--- | :--- | :--- |
+| **1. Serviços de IA** | Modelos Prontos | Modelos pré-treinados prontos para executar funções específicas sem exigir conhecimento em ML. |
+| **2. Serviços de ML** | Abordagem Personalizada | Ferramentas gerenciadas para construir, treinar e implantar modelos próprios (**Amazon SageMaker AI**). |
+| **3. Frameworks e Infraestrutura** | Totalmente Personalizada | Abordagem criada para fins específicos, utilizando bibliotecas de software e ferramentas de infraestrutura pura de ML da AWS. |
+
+---
+
+## 🛠 Serviços de IA Baseados em Recursos
+
+### 🔤 1. Serviços de Linguagem e Processamento de Texto
+* **Amazon Comprehend:** Serviço de Processamento de Linguagem Natural (PLN) para extrair informações, insights e relacionamentos de textos.
+* **Amazon Polly:** Converte texto em fala realista (Text-to-Speech).
+* **Amazon Transcribe:** Converte fala/áudio em texto escrito (Speech-to-Text).
+* **Amazon Translate:** Serviço de tradução fluida e precisa de idiomas.
+* **Amazon Textract:** Extrai textos, tabelas e dados estruturados diretamente de documentos digitalizados.
+
+### 🔍 2. Serviços de Pesquisa, Visão Computacional e Customização
+* **Amazon Kendra:** Utiliza inteligência e PLN para pesquisar respostas precisas dentro de repositórios corporativos.
+* **Amazon Rekognition:** Análise de imagens e vídeos (reconhecimento facial, detecção de objetos e moderação de conteúdo).
+* **Amazon Lex:** Interface de conversação de voz e texto (utiliza NCI e ASR) para criar chatbots e interações realistas.
+* **Amazon Personalize:** Cria recomendações personalizadas e inteligentes com base nos dados históricos de navegação/compra do usuário.
+
+### 🧪 3. Plataforma de Machine Learning Customizada
+* **Amazon SageMaker AI:** Ambiente totalmente gerenciado. A IDE fornece controle de acesso, simplificação sobre os projetos de ML, além de oferecer modelos pré-treinados práticos para deploy.
+
+---
+
+## 🚀 Inteligência Artificial Generativa na AWS
+
+Uma visão focada nas novas ferramentas e ecossistemas de IA Generativa.
+
+### 🏗️ Comparativo de Plataformas: SageMaker JumpStart vs. Amazon Bedrock
+
+| Recurso | 📦 Amazon SageMaker JumpStart | ⚡ Amazon Bedrock |
+| :--- | :--- | :--- |
+| **O que é?** | Hub de ML com Foundation Models (FMs). | Serviço gerenciado para criar aplicações de IA Generativa. |
+| **Acesso** | Fornece bibliotecas, códigos e modelos tabulados (VC, PLN, etc). | Fornece acesso aos FMs da Amazon e de outras IAs através de uma API unificada. |
+| **Foco** | Implantação e controle do Hub de ML dentro da infraestrutura. | Implementação simplificada e consumo de modelos em outras empresas. |
+
+### 🤖 Amazon Q (Assistente de IA)
+O assistente inteligente focado em produtividade corporativa e desenvolvimento, dividido em:
+* **💡 Q Business:** Usa os dados e a experiência contida nos repositórios internos da empresa para responder perguntas e otimizar processos.
+* **💻 Q Developer:** Assistente focado em engenharia de software para recomendação, geração e otimização de código.
+
+---
+
+## 📊 AWS Data Analytics & Data Pipelines
+
+> *Data Analytics: Quando os analistas transformam dados brutos para descobrir coisas, extrair informações úteis e prever tendências.*
+
+### 🛠️ Processos de ETL (Extract, Transform, Load)
+* **Extrai:** Coleta os dados de fontes diversas.
+* **Transforma:** Modifica os dados em formatos utilizáveis/limpos.
+* **Carrega:** Envia os dados transformados para uma plataforma de armazenamento (Warehouse ou Data Lake).
+
+### 📈 Catálogo e Processamento
+* **AWS Glue:** Serviço de integração de dados serveless que facilita a preparação e o processo de ETL.
+    * **AWS Glue Data Catalog:** Fornece um inventário metadata centralizado dos dados para organização e busca.
+* **Amazon EMR:** Processamento de dados em grande escala (Big Data) utilizando ecossistemas distribuídos.
+
+### 🗄️ Armazenamento e Consulta
+* **Amazon S3:** Base ideal para a construção de **Data Lakes** (repositórios flexíveis e escaláveis de armazenamento bruto). O S3 serve como origem/destino comum para pipelines que alimentam ferramentas de BI ou o **Amazon Redshift**.
+* **Amazon Redshift:** Data Warehouse focado em armazenamento em colunas e arquitetura de processamento massivo em paralelo (MPP), ideal para grandes conjuntos de dados estruturados.
+* **Amazon Athena:** Permite realizar consultas interativas utilizando SQL diretamente sobre os dados armazenados no S3. É um serviço inteiramente serverless (paga-se apenas pelas consultas executadas).
+
+### 🔄 Ingestão de Dados em Tempo Real (Pipelines)
+* **Amazon Kinesis Data Streams:** Ingestão de dados de streaming em tempo real (baixa latência).
+* **Amazon Kinesis Data Firehose:** Entrega/carregamento dos fluxos de dados em tempo real diretamente para destinos de armazenamento (como S3 ou Redshift). *Foco em lote/micro-lote tolerável.*
+
+### 👁️ Visualização e Monitoramento
+* **Amazon QuickSight:** Cria rapidamente painéis (dashboards) e relatórios interativos. Permite realizar consultas utilizando Linguagem Natural (LN).
+* **Amazon OpenSearch Service:** Ferramenta focada em pesquisas por palavras-chaves ou LN, ideal para visualização em tempo real, análise de logs e monitoramento de aplicações.
+
